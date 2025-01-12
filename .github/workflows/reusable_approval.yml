@@ -1,0 +1,37 @@
+name: Wait for Approval
+
+on:
+  workflow_call:
+    inputs:
+      env_name:
+        required: true
+        type: string
+
+jobs:
+  wait-for-approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Environment
+        run: echo "Waiting for approval in environment ${{ inputs.env_name }}"
+        
+      - name: Simulate Approval
+        run: |
+           echo "Simulating approval after 3 minutes..."
+           sleep 30  # Wait for 3 minutes
+           touch /tmp/approval_received
+
+      - name: Wait for Webhook Trigger
+        run: |
+          while true; do
+            if [ -f /tmp/approval_received ]; then
+              echo "Approval received for ${{ inputs.env_name }}!"
+              break
+            fi
+            echo "No approval yet for ${{ inputs.env_name }}. Waiting..."
+            sleep 60
+          done
+          
+      - name: Create Approval File
+        if: github.event.action == 'approval_received' && github.event.client_payload.env_name == inputs.env_name
+        run: touch /tmp/approval_received_${{ inputs.env_name }}
+       
