@@ -1,0 +1,18 @@
+name: Example Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Secret Token
+        run: echo "Using the secret token!"
+        env:
+          TOKEN: ${{ secrets.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 }}
