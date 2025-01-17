@@ -51,7 +51,7 @@ jobs:
           body: |
             Test reports for DEV environment are available.
             Please review and approve it.
-          to: "sankarviswanathan1991@gmail.com"
+          to: "sumanrajputmit@gmail.com"
           attachments: |
             reports/extent-report.html
             reports/screenshots/*
@@ -101,7 +101,7 @@ jobs:
           body: |
             Test reports for SIT environment are available.
             Please review and approve to complete the workflow.
-          to: "sankarviswanathan1991@gmail.com"
+          to: "sumanrajputmit@gmail.com"
           attachments: |
             reports/extent-report.html
             reports/screenshots/*
