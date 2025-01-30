@@ -1,4 +1,4 @@
-name: Hello_World
+name: Display hello world
 
 on: 
   push:
